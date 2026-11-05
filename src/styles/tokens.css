@@ -1,0 +1,79 @@
+/* Màu và chữ dùng chung cho trang giới thiệu và ứng dụng.
+   Bảng màu sáng lấy từ cây đàn: nền là mặt gỗ thông, chữ là gỗ hồng mộc của cần đàn,
+   điểm nhấn là phím đồng, hợp âm là màu dây đồng xỉn. Chữ trên nền đều đạt tương phản ≥ 4.5. */
+
+@import '@fontsource-variable/fraunces/index.css';
+@import '@fontsource/be-vietnam-pro/vietnamese-400.css';
+@import '@fontsource/be-vietnam-pro/vietnamese-500.css';
+@import '@fontsource/be-vietnam-pro/vietnamese-600.css';
+@import '@fontsource/be-vietnam-pro/latin-400.css';
+@import '@fontsource/be-vietnam-pro/latin-500.css';
+@import '@fontsource/be-vietnam-pro/latin-600.css';
+
+:root {
+  --bg: #f7eedf; /* nền: mặt gỗ thông */
+  --surface: #fffaf1; /* mặt khối, thẻ */
+  --surface-2: #f2e5d0; /* nút phụ, ô nhập */
+  --line: #dcc8a8; /* viền */
+  --ink: #3d281b; /* chữ chính: gỗ hồng mộc */
+  --ink-2: #76593f; /* chữ phụ */
+  --accent: #f0ae45; /* nền nút chính, thanh tiến trình */
+  --accent-deep: #e39a2a; /* nút chính khi rê chuột */
+  --accent-ink: #8f520a; /* chữ và viền màu đồng: lời đã hát, liên kết nâng cấp */
+  --on-accent: #2a1a05; /* chữ trên nền màu đồng */
+  --chord: #0f6a5d; /* tên hợp âm, đủ tương phản cả trên vệt vân gỗ đậm nhất */
+  --on-chord: #ffffff;
+  --danger: #b93a2c;
+  --ok: #2f7d3c;
+  --shadow: 0 1px 2px rgb(61 40 27 / 0.06), 0 4px 16px rgb(61 40 27 / 0.06);
+
+  /* Vân gỗ thông: thớ lượn dài và sợi gỗ mảnh, vẽ bằng nhiễu SVG, lặp ô 1200×600 không thấy mối nối.
+     Vệt đậm nhất vẫn giữ chữ phụ, chữ đồng và hợp âm ở tương phản ≥ 4.5. */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'%3E%3Cfilter id='g' filterUnits='userSpaceOnUse' x='0' y='0' width='1200' height='600'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.0016 0.03' numOctaves='3' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.29 0 0 0 0 0.14 1 0 0 0 0'/%3E%3CfeComponentTransfer result='c'%3E%3CfeFuncA type='table' tableValues='0 0.070 0.018 0 0.063 0.018 0 0.070 0.018 0 0.063 0.018 0 0.070 0.018 0 0.063 0.018 0'/%3E%3C/feComponentTransfer%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.005 0.6' numOctaves='2' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.29 0 0 0 0 0.14 0 0 0 -.4 .22'/%3E%3CfeComposite in2='c' operator='over'/%3E%3C/filter%3E%3Crect width='1200' height='600' filter='url(%23g)'/%3E%3C/svg%3E");
+
+  /* Hình nốt nhạc dùng làm mask, tô bằng currentColor */
+  --note-eighth: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cellipse cx='8.2' cy='18.4' rx='4.4' ry='3.1' transform='rotate(-24 8.2 18.4)'/%3E%3Cpath d='M11.3 17.6V2.6h1.6c.3 2.7 2.2 4 3.9 5.4 1.9 1.6 2.4 4 1.3 6.3.1-2.2-1.2-3.7-3-4.6-.8-.4-1.5-.7-2.2-.9v8.8z'/%3E%3C/svg%3E");
+  --note-beamed: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cellipse cx='5.6' cy='19.2' rx='3.7' ry='2.7' transform='rotate(-24 5.6 19.2)'/%3E%3Cellipse cx='17.2' cy='16.6' rx='3.7' ry='2.7' transform='rotate(-24 17.2 16.6)'/%3E%3Cpath d='M8.2 18.6V5.4L21.4 2.4v13.6h-1.5V7.1L9.7 9.4v9.2z'/%3E%3C/svg%3E");
+  --note-quarter: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cellipse cx='9.6' cy='18.4' rx='4.6' ry='3.2' transform='rotate(-24 9.6 18.4)'/%3E%3Crect x='12.8' y='2.6' width='1.6' height='15.4'/%3E%3C/svg%3E");
+
+  --font-display: 'Fraunces Variable', 'Fraunces', Georgia, serif;
+  --font-body: 'Be Vietnam Pro', system-ui, 'Segoe UI', sans-serif;
+
+  --radius-s: 6px;
+  --radius-m: 10px;
+  --radius-l: 18px;
+
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--grain) var(--bg);
+  color-scheme: light;
+  -webkit-text-size-adjust: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-ink);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

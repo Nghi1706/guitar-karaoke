@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Karaoke Guitar: đệm đàn guitar online, hát theo hợp âm</title>
+    <meta
+      name="description"
+      content="Dán lời bài hát có hợp âm, web tự đệm guitar theo điệu ballad, slow rock, bolero, pop và chạy chữ karaoke đúng nhịp. Đổi tông, capo, sơ đồ hợp âm. Miễn phí, chạy trên điện thoại và máy tính."
+    />
+    <link rel="canonical" href="__SITE_URL__/" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#f7eedf" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="vi_VN" />
+    <meta property="og:site_name" content="Karaoke Guitar" />
+    <meta property="og:url" content="__SITE_URL__/" />
+    <meta property="og:title" content="Karaoke Guitar: dán lời có hợp âm, web đệm đàn cho bạn hát" />
+    <meta
+      property="og:description"
+      content="Đệm guitar tự động theo hợp âm trong lời bài hát, chữ chạy kiểu karaoke. Đổi tông, capo, 4 điệu quen thuộc."
+    />
+    <meta property="og:image" content="__SITE_URL__/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!--
+      TẠM ẨN PREMIUM: khi bật lại gói trả phí thì thêm lại 2 Offer này vào "offers" bên dưới
+      { "@type": "Offer", "name": "Premium 1 tháng", "price": "29000", "priceCurrency": "VND" },
+      { "@type": "Offer", "name": "Premium 1 năm", "price": "249000", "priceCurrency": "VND" }
+      và trả câu hỏi "có miễn phí không" (ở đây và trong phần FAQ cuối trang) về bản có nhắc quảng cáo, Premium.
+    -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Karaoke Guitar",
+        "url": "__SITE_URL__/",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "Mọi trình duyệt",
+        "inLanguage": "vi",
+        "description": "Web đệm guitar tự động theo hợp âm trong lời bài hát, chạy chữ kiểu karaoke để hát theo.",
+        "offers": [{ "@type": "Offer", "name": "Miễn phí", "price": "0", "priceCurrency": "VND" }]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Karaoke Guitar có miễn phí không?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Có. Mọi tính năng đều dùng miễn phí, không cần tài khoản và không có quảng cáo."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Viết hợp âm vào lời bài hát như thế nào?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Đặt hợp âm trong ngoặc vuông ngay trước chữ được đổi hợp âm, ví dụ [Am]Chiều nay, hoặc viết hợp âm ở dòng riêng phía trên lời theo kiểu canh cột. Các dòng như Verse 1, Chorus, ĐK được hiểu là tên đoạn."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Có đổi tông cho hợp giọng được không?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Được. Bấm cộng hoặc trừ ở mục Tông hát, mọi hợp âm và tiếng đàn đệm đổi theo. Có thể chọn thêm capo để đổi thế bấm mà vẫn giữ tông."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Dùng trên điện thoại được không?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Được. Web chạy trên trình duyệt của điện thoại, máy tính bảng và máy tính, không cần cài ứng dụng. Nên đeo tai nghe hoặc nối loa để nghe rõ tiếng đàn."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Bài hát của tôi được lưu ở đâu?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Bài được lưu ngay trên trình duyệt của bạn. Không ai khác xem được, và bài vẫn còn khi bạn mở lại web trên cùng máy."
+            }
+          }
+        ]
+      }
+    </script>
+    <link rel="stylesheet" href="/src/landing/landing.css" />
+  </head>
+  <body>
+    <header class="site-head">
+      <a class="brand" href="/">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-name">Karaoke Guitar</span>
+      </a>
+      <nav aria-label="Trang">
+        <a href="#cach-dung">Cách dùng</a>
+        <a href="#viet-hop-am">Viết hợp âm</a>
+        <!-- TẠM ẨN PREMIUM: <a href="#bang-gia">Bảng giá</a> -->
+        <a class="cta-small" href="/app/#/soan">Mở trang hát</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <h1>Dán lời có hợp âm, web đệm đàn cho bạn hát</h1>
+          <p class="lead">
+            Karaoke Guitar đọc hợp âm trong lời bài hát, đệm guitar theo điệu ballad, slow rock, bolero hoặc pop, rồi
+            chạy chữ đúng nhịp. Bạn chỉ việc hát, trên điện thoại hay máy tính đều được.
+          </p>
+          <div class="hero-actions">
+            <a class="btn-cta" href="/app/#/soan">Bắt đầu hát, miễn phí</a>
+            <a class="btn-quiet" href="#cach-dung">Xem cách dùng</a>
+          </div>
+          <p class="fine">Không cần tài khoản. Không cần cài ứng dụng.</p>
+        </div>
+
+        <!-- Một câu hát mẫu chạy chữ như trong app (lời tự viết) -->
+        <figure class="stage" aria-label="Ví dụ lời bài hát chạy chữ theo hợp âm">
+          <!-- Nốt nhạc trôi chậm quanh câu hát, chỉ để trang trí -->
+          <span class="hero-notes" aria-hidden="true">
+            <i class="beamed" style="--l: -4%; --t: 8%; --s: 30px; --d: 0s; --dur: 11s"></i>
+            <i class="eighth" style="--l: 92%; --t: -6%; --s: 22px; --d: 3.5s; --dur: 13s"></i>
+            <i class="quarter" style="--l: 103%; --t: 38%; --s: 34px; --d: 6s; --dur: 12s"></i>
+            <i class="eighth" style="--l: 86%; --t: 92%; --s: 20px; --d: 1.5s; --dur: 10s"></i>
+            <i class="quarter" style="--l: 48%; --t: -12%; --s: 18px; --d: 8s; --dur: 14s"></i>
+            <i class="eighth" style="--l: -6%; --t: 78%; --s: 24px; --d: 4.8s; --dur: 12s"></i>
+            <i class="beamed" style="--l: 70%; --t: 104%; --s: 28px; --d: 9.5s; --dur: 13s"></i>
+          </span>
+          <div class="stage-line">
+            <span class="seg" style="--i: 0"><b>C</b><span>Chiều nay ngồi </span></span>
+            <span class="seg" style="--i: 1"><b>G</b><span>bên hiên nhà</span></span>
+          </div>
+          <div class="stage-line">
+            <span class="seg" style="--i: 2"><b>Am</b><span>Ôm cây đàn </span></span>
+            <span class="seg" style="--i: 3"><b>F</b><span>hát vài câu ca</span></span>
+          </div>
+          <figcaption>Hợp âm sáng lên đúng lúc đổi, lời tô màu theo nhịp đàn.</figcaption>
+        </figure>
+      </section>
+
+      <section id="cach-dung" class="steps">
+        <h2>Ba bước là hát được</h2>
+        <ol>
+          <li>
+            <h3>Dán lời bài hát</h3>
+            <p>Chép lời có hợp âm từ sổ tay hay trang hợp âm quen thuộc vào ô soạn bài.</p>
+          </li>
+          <li>
+            <h3>Chọn điệu và tông</h3>
+            <p>Chọn ballad, slow rock, bolero hoặc pop, chỉnh tempo và hạ tông cho vừa giọng.</p>
+          </li>
+          <li>
+            <h3>Bấm phát và hát</h3>
+            <p>Đếm ngược vài giây rồi đàn vào. Chữ chạy theo nhạc, hợp âm kế tiếp hiện sẵn bên cạnh.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="features">
+        <h2>Những gì bạn có trong một trang</h2>
+        <div class="feature-grid">
+          <article>
+            <h3>Đệm guitar theo 4 điệu</h3>
+            <p>Rải ballad, slow rock 12/8, bolero bass luân phiên, quạt pop. Tiếng đàn nylon thu từ đàn thật.</p>
+          </article>
+          <article>
+            <h3>Đổi tông một chạm</h3>
+            <p>Lên xuống từng nửa cung, hợp âm trong lời đổi theo. Web tự đoán tông gốc từ hợp âm đầu bài.</p>
+          </article>
+          <article>
+            <h3>Capo và sơ đồ thế bấm</h3>
+            <p>Đặt capo để có thế bấm dễ hơn. Sơ đồ hợp âm đang đàn và hợp âm tiếp theo luôn hiện trên màn hình.</p>
+          </article>
+          <article>
+            <h3>Chỉnh độ dài từng hợp âm</h3>
+            <p>Hợp âm nào ngân lâu hay đổi nhanh thì bấm vào chọn từ ¼ đến 4 ô nhịp, hoặc phát từ đúng chỗ đó.</p>
+          </article>
+          <article>
+            <h3>Lưu thư viện bài hát</h3>
+            <p>Bài đang soạn tự lưu. Lưu nhiều bài vào thư viện trên máy để buổi sau mở lại hát tiếp.</p>
+          </article>
+          <article>
+            <h3>Hợp màn hình nào cũng được</h3>
+            <p>Chữ to dễ đọc trên điện thoại đặt trên giá nhạc, bố cục rộng rãi trên máy tính bảng và PC.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="viet-hop-am" class="formats">
+        <div>
+          <h2>Viết hợp âm theo kiểu bạn quen</h2>
+          <p>
+            Web nhận cả hai cách viết phổ biến. Dòng như <code>Verse 1:</code>, <code>Chorus:</code> hay
+            <code>ĐK:</code> được hiểu là tên đoạn.
+          </p>
+        </div>
+        <figure>
+          <figcaption>Hợp âm trong ngoặc vuông</figcaption>
+          <pre><code>[C]Chiều nay ngồi [G]bên hiên nhà
+[Am]Ôm cây đàn [F]hát vài câu ca</code></pre>
+        </figure>
+        <figure>
+          <figcaption>Hợp âm ở dòng phía trên lời</figcaption>
+          <pre><code>C              G
+Chiều nay ngồi bên hiên nhà
+Am           F
+Ôm cây đàn hát vài câu ca</code></pre>
+        </figure>
+      </section>
+
+      <!-- TẠM ẨN PREMIUM: bảng giá, bỏ comment để hiện lại
+      <section id="bang-gia" class="pricing">
+        <h2>Miễn phí để hát, trả phí để tắt quảng cáo</h2>
+        <div class="price-grid">
+          <article>
+            <h3>Miễn phí</h3>
+            <p class="price">0đ</p>
+            <p>Đủ mọi tính năng. Mỗi lần mở web có một quảng cáo 5 giây trước khi phát.</p>
+          </article>
+          <article>
+            <h3>Premium tháng</h3>
+            <p class="price">29.000đ</p>
+            <p>Không quảng cáo trong 30 ngày, trên mọi thiết bị bạn đăng nhập.</p>
+          </article>
+          <article class="featured">
+            <h3>Premium năm</h3>
+            <p class="price">249.000đ</p>
+            <p>Không quảng cáo trong 365 ngày. Trả bằng mã QR ngân hàng, không tự gia hạn.</p>
+          </article>
+        </div>
+      </section>
+      -->
+
+      <section class="faq">
+        <h2>Câu hỏi thường gặp</h2>
+        <details>
+          <summary>Karaoke Guitar có miễn phí không?</summary>
+          <p>Có. Mọi tính năng đều dùng miễn phí, không cần tài khoản và không có quảng cáo.</p>
+        </details>
+        <details>
+          <summary>Viết hợp âm vào lời bài hát như thế nào?</summary>
+          <p>
+            Đặt hợp âm trong ngoặc vuông ngay trước chữ được đổi hợp âm, ví dụ <code>[Am]Chiều nay</code>, hoặc viết hợp
+            âm ở dòng riêng phía trên lời theo kiểu canh cột. Các dòng như Verse 1, Chorus, ĐK được hiểu là tên đoạn.
+          </p>
+        </details>
+        <details>
+          <summary>Có đổi tông cho hợp giọng được không?</summary>
+          <p>
+            Được. Bấm cộng hoặc trừ ở mục Tông hát, mọi hợp âm và tiếng đàn đệm đổi theo. Có thể chọn thêm capo để đổi
+            thế bấm mà vẫn giữ tông.
+          </p>
+        </details>
+        <details>
+          <summary>Dùng trên điện thoại được không?</summary>
+          <p>
+            Được. Web chạy trên trình duyệt của điện thoại, máy tính bảng và máy tính, không cần cài ứng dụng. Nên đeo
+            tai nghe hoặc nối loa để nghe rõ tiếng đàn.
+          </p>
+        </details>
+        <details>
+          <summary>Bài hát của tôi được lưu ở đâu?</summary>
+          <p>
+            Bài được lưu ngay trên trình duyệt của bạn. Không ai khác xem được, và bài vẫn còn khi bạn mở lại web trên
+            cùng máy.
+          </p>
+        </details>
+      </section>
+
+      <section class="closing">
+        <h2>Lấy đàn chưa kịp thì để web đàn trước</h2>
+        <a class="btn-cta" href="/app/#/soan">Mở trang hát</a>
+      </section>
+    </main>
+
+    <footer class="site-foot">
+      <p>Karaoke Guitar</p>
+      <nav aria-label="Liên kết cuối trang">
+        <a href="/app/#/soan">Soạn bài</a>
+        <a href="/app/#/hat">Hát</a>
+        <!-- TẠM ẨN PREMIUM VÀ TÀI KHOẢN:
+        <a href="/app/#/upgrade">Bảng giá</a>
+        <a href="/app/#/account">Tài khoản</a>
+        -->
+      </nav>
+      <p class="fine">Tiếng đàn: FreePats Spanish Classical Guitar (CC0). Thế bấm hợp âm: chords-db (MIT).</p>
+    </footer>
+  </body>
+</html>
