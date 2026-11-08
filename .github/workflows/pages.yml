@@ -35,10 +35,17 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm test
-      - run: npm run build
+      # Tên miền github.io phải viết thường (canonical, sitemap), biểu thức Actions không có hàm đổi chữ thường
+      - name: Địa chỉ web
+        run: |
+          owner="${GITHUB_REPOSITORY_OWNER,,}"
+          echo "SITE_URL=${VAR_SITE_URL:-https://$owner.github.io/$REPO}" >> "$GITHUB_ENV"
+          echo "BASE_PATH=${VAR_BASE_PATH:-/$REPO/}" >> "$GITHUB_ENV"
         env:
-          SITE_URL: ${{ vars.SITE_URL || format('https://{0}.github.io/{1}', github.repository_owner, github.event.repository.name) }}
-          BASE_PATH: ${{ vars.BASE_PATH || format('/{0}/', github.event.repository.name) }}
+          VAR_SITE_URL: ${{ vars.SITE_URL }}
+          VAR_BASE_PATH: ${{ vars.BASE_PATH }}
+          REPO: ${{ github.event.repository.name }}
+      - run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
