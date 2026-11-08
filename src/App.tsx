@@ -8,7 +8,7 @@ import { Icon } from './components/Icon'
 import { Modal } from './components/Modal'
 import { Player } from './components/Player'
 import { SettingsPanel } from './components/SettingsPanel'
-import { ACCOUNTS_ENABLED, ADS_ENABLED } from './config/features'
+import { ACCOUNTS_ENABLED, ADS_ENABLED, SERVER_ENABLED } from './config/features'
 import { getStyle } from './config/styles'
 import { buildArrangement, detectKey, renderNotes } from './lib/arrange'
 import { parseSong } from './lib/parser'
@@ -53,8 +53,11 @@ function Shell() {
   // Mở /app/ không có # thì chọn màn một lần lúc vào: có bài sẵn thì hát, chưa có thì soạn.
   // Không tính lại theo song.text, nếu không gõ chữ đầu tiên sẽ bị nhảy sang màn hát.
   const [startView] = useState<Route>(() => (song.text.trim() ? 'hat' : 'soan'))
-  // Tắt tài khoản thì trang nâng cấp không mở được, quay về màn mặc định
-  const allowed = route === 'upgrade' && !ACCOUNTS_ENABLED ? null : route
+  // Trang nào cần server mà đang tắt thì không mở được, quay về màn mặc định
+  const blocked =
+    (!SERVER_ENABLED && (route === 'account' || route === 'upgrade' || route === 'admin')) ||
+    (route === 'upgrade' && !ACCOUNTS_ENABLED)
+  const allowed = blocked ? null : route
   const view: Route = allowed ?? startView
   const studio = view === 'soan' || view === 'hat'
 
@@ -152,12 +155,12 @@ function Shell() {
 
   const premium = isPremium(user)
   // Tắt tài khoản thì giấu nút đăng nhập, nhưng ai đã đăng nhập (admin) vẫn thấy để vào tài khoản, đăng xuất
-  const showAccount = ACCOUNTS_ENABLED || !!user
+  const showAccount = SERVER_ENABLED && (ACCOUNTS_ENABLED || !!user)
 
   return (
     <div className={`app ${phone ? 'is-phone' : ''}`}>
       <header className="topbar">
-        <a className="brand" href="/" aria-label="Karaoke Guitar, về trang giới thiệu">
+        <a className="brand" href={import.meta.env.BASE_URL} aria-label="Karaoke Guitar, về trang giới thiệu">
           <span className="brand-mark" aria-hidden="true" />
           <span className="brand-name">Karaoke Guitar</span>
         </a>
@@ -181,10 +184,12 @@ function Shell() {
             <Icon name="sliders" /> Tuỳ chỉnh
           </button>
         )}
-        <button className="btn ghost" onClick={() => setFeedbackOpen(true)} aria-label="Gửi góp ý">
-          <Icon name="message" />
-          {!phone && <span className="label-wide">Góp ý</span>}
-        </button>
+        {SERVER_ENABLED && (
+          <button className="btn ghost" onClick={() => setFeedbackOpen(true)} aria-label="Gửi góp ý">
+            <Icon name="message" />
+            {!phone && <span className="label-wide">Góp ý</span>}
+          </button>
+        )}
         {user?.role === 'admin' && !phone && (
           <a className={`btn ghost ${view === 'admin' ? 'on' : ''}`} href={href('admin')}>
             <Icon name="shield" /> Quản trị
@@ -257,7 +262,9 @@ function Shell() {
           {settingsPanel}
         </Modal>
       )}
-      <FeedbackDialog open={feedbackOpen} onClose={() => setFeedbackOpen(false)} page={view} />
+      {SERVER_ENABLED && (
+        <FeedbackDialog open={feedbackOpen} onClose={() => setFeedbackOpen(false)} page={view} />
+      )}
       {adGate}
     </div>
   )

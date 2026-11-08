@@ -16,7 +16,29 @@ npm test               # unit test, gồm cả test server
 
 Lúc dev, Vite chuyển `/api`, `/robots.txt`, `/sitemap.xml` sang server Node. Chưa điền khoá PayOS thì trang nâng cấp hiện nút **Giả lập thanh toán thành công** để thử luồng mua.
 
-### Đưa lên mạng
+### Đưa lên mạng dạng web tĩnh (miễn phí, đang dùng)
+
+`SERVER_ENABLED = false` trong `src/config/features.ts`: web không gọi server nào, `npm run build` ra thư mục `dist/` là đủ. Soạn, hát, thư viện bài vẫn chạy đủ (lưu trong trình duyệt). Không có góp ý, đếm lượt dùng, tài khoản và trang quản trị.
+
+Biến môi trường lúc build:
+
+- `SITE_URL`: địa chỉ thật, ví dụ `https://karaokeguitar.pages.dev`. Dùng cho canonical, Open Graph, `robots.txt`, `sitemap.xml`. Thiếu thì build vẫn chạy nhưng có cảnh báo.
+- `BASE_PATH`: chỉ cần khi web nằm trong thư mục con, ví dụ `/guitar-karaoke/` trên GitHub Pages chưa gắn domain riêng.
+
+Node 24 ghi trong `.node-version`, các host bên dưới tự đọc file này.
+
+| Host | Cài đặt |
+| --- | --- |
+| Cloudflare Pages (khuyên dùng, băng thông không giới hạn) | Workers & Pages > Create > Pages > nối repo GitHub. Build command `npm run build`, output `dist`, thêm biến `SITE_URL`. |
+| Netlify | Add new site > Import from Git. Build `npm run build`, publish `dist`, thêm `SITE_URL`. |
+| Vercel | Import repo, framework Vite, output `dist`, thêm `SITE_URL`. |
+| GitHub Pages | Settings > Pages > Source: **GitHub Actions**. Workflow `.github/workflows/pages.yml` tự build mỗi lần push lên `main-dev` hoặc `main`. Gắn domain riêng thì đặt biến repo `BASE_PATH=/` và `SITE_URL`. |
+
+Muốn đếm người vào thì bật Cloudflare Web Analytics (miễn phí) hoặc analytics có sẵn của host.
+
+### Đưa lên mạng kèm server (tài khoản, góp ý, quản trị)
+
+Đổi `SERVER_ENABLED = true` trong `src/config/features.ts`, rồi:
 
 ```bash
 npm run build          # dist/index.html (trang giới thiệu) và dist/app/ (ứng dụng)
@@ -63,6 +85,7 @@ Nút **Góp ý** ở góc trên gửi thẳng vào trang quản trị.
 
 Cờ nằm trong `src/config/features.ts`, đổi xong phải build lại:
 
+- `SERVER_ENABLED`: có server Node đi kèm hay không. Đang tắt (web tĩnh), nên hai cờ dưới cũng không có tác dụng.
 - `ADS_ENABLED`: quảng cáo 5 giây ở lần bấm phát đầu tiên mỗi khi mở web (người có Premium không thấy).
 - `ACCOUNTS_ENABLED`: đăng nhập, tạo tài khoản, nâng cấp Premium (tháng hoặc năm, trả bằng mã QR qua PayOS).
 

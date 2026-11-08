@@ -1,0 +1,46 @@
+# Tự build và đưa web tĩnh lên GitHub Pages mỗi khi push lên main-dev hoặc main.
+# Bật một lần: repo > Settings > Pages > Source: GitHub Actions.
+#
+# Repo > Settings > Secrets and variables > Actions > Variables (không bắt buộc):
+#   SITE_URL   địa chỉ web, mặc định https://<tên>.github.io/<repo>
+#   BASE_PATH  thư mục con, mặc định /<repo>/. Gắn domain riêng thì đặt là /
+
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: [main-dev, main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+        env:
+          SITE_URL: ${{ vars.SITE_URL || format('https://{0}.github.io/{1}', github.repository_owner, github.event.repository.name) }}
+          BASE_PATH: ${{ vars.BASE_PATH || format('/{0}/', github.event.repository.name) }}
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+      - id: deployment
+        uses: actions/deploy-pages@v4

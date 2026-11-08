@@ -16,6 +16,7 @@ import type {
   UsageEventBody,
   User,
 } from '../../shared/api'
+import { SERVER_ENABLED } from '../config/features'
 
 export class ApiError extends Error {
   status: number
@@ -35,6 +36,8 @@ async function request<T>(method: string, path: string, body?: unknown, query?: 
           .map(([k, v]) => [k, String(v)]),
       ).toString()
     : ''
+  // Web tĩnh không có server: báo lỗi ngay, không gửi request đi đâu cả
+  if (!SERVER_ENABLED) throw new ApiError(0, 'Bản web này không có máy chủ.')
   let res: Response
   try {
     res = await fetch(`/api${path}${qs ? `?${qs}` : ''}`, {
